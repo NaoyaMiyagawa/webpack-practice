@@ -3,7 +3,7 @@ const mode = "development";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
   mode: "development",
@@ -16,11 +16,20 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(ts|tsx)/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "ts-loader",
+          },
+        ],
+      },
+      {
         test: /\.vue/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'vue-loader',
+            loader: "vue-loader",
           },
         ],
       },
@@ -31,10 +40,7 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: [
-                ["@babel/preset-env", { targets: "> 30%, dead" }],
-                '@babel/preset-react',
-              ],
+              presets: [["@babel/preset-env", { targets: "> 30%, dead" }], "@babel/preset-react"],
             },
           },
         ],
@@ -72,8 +78,8 @@ module.exports = {
               mozjpeg: {
                 progressive: true,
                 quality: 65,
-              }
-            }
+              },
+            },
           },
         ],
       },
